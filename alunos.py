@@ -103,3 +103,42 @@ plt.xticks(rotation=45)
 plt.xlabel('Métricas') # Update xlabel
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
+
+# Matriz de correlação escolar
+def plot_correlacao2(dados3,dados4,nome3,nome4):
+  plt.figure(figsize=(8, 6))
+  plt.scatter(dados3, dados4, color='darkblue', alpha=0.7)
+
+  #Linha de tendência
+  # Ensure both inputs are numerical before attempting polyfit
+  if np.issubdtype(dados3.dtype, np.number) and np.issubdtype(dados4.dtype, np.number):
+      r = np.polyfit(dados3, dados4, 1)
+      s = np.poly1d(r)
+      plt.plot(dados3, s(dados3), 'r--')
+  else:
+      print(f"Ignorando linha de tendência para dados não numéricos: {nome3} e {nome4}")
+
+  plt.title(f'Correlação entre {nome3} e {nome4}', pad=20)
+  plt.xlabel(f"{nome3}")
+  plt.ylabel(f"{nome4}")
+
+  # Calculate correlation only if both inputs are numerical
+  if np.issubdtype(dados3.dtype, np.number) and np.issubdtype(dados4.dtype, np.number):
+    correlacao2 = np.corrcoef(dados3, dados4)[0, 1]
+    plt.annotate(f'Correlação: {correlacao2:.2f}',
+                 xy=(0.00, 1.00), xycoords='axes fraction',
+                 bbox=dict(boxstyle='round', fc='w'))
+  else:
+      # Add a note if correlation is not applicable
+      plt.annotate('Correlação não aplicável',
+                   xy=(0.00, 1.00), xycoords='axes fraction',
+                   bbox=dict(boxstyle='round', fc='w'))
+      print(f"A Correlação não é aplicável para dados não numéricos: {nome3} e {nome4}")
+
+# Gerando gráficos de Correlação
+plot_correlacao2(edados['nota1'], edados['media'], "Nota 1", "Média")
+plot_correlacao2(edados['nota2'], edados['media'], "Nota 2", "Média")
+plot_correlacao2(edados['nota3'], edados['media'], "Nota 3", "Média")
+plot_correlacao2(edados['disciplina'], edados['media'], "Disciplina", "Média")
+plot_correlacao2(edados['media'], edados['frequencia'], "Média", "Frequência")
+plot_correlacao2(edados['media'], edados['situacao'], "Média", "Situação")
