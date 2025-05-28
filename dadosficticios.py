@@ -339,3 +339,94 @@ plot_correlacao2(edados['nota3'], edados['media'], "Nota 3", "Média")
 plot_correlacao2(edados['disciplina'], edados['media'], "Disciplina", "Média")
 plot_correlacao2(edados['media'], edados['frequencia'], "Média", "Frequência")
 plot_correlacao2(edados['media'], edados['situacao'], "Média", "Situação")
+
+'''Assimetria e Curtose escolar - notas, media, frequencia, situacao.'''
+
+assimetria1 = df_alunos['nota1'].skew()
+assimetria2 = df_alunos['nota2'].skew()
+assimetria3 = df_alunos['nota3'].skew()
+assimetria4 = df_alunos['media'].skew()
+assimetria5 = df_alunos['frequencia'].skew()
+
+#Distribuições simétrica e assimétrica
+
+if -0.5 <= assimetria1 <= 0.5:
+    print('A distribuição Nota 1 é simétrica')
+elif assimetria1 > -0.5:
+    print('A distribuição Nota 1 é assimétrica positiva')
+else:
+    print('A distribuição Nota 1 é assimétrica negativa')
+
+#Distribuições simétrica e assimétrica
+
+if -0.5 <= assimetria2 <= 0.5:
+    print('A distribuição Nota 2 é simétrica')
+elif assimetria2 > -0.5:
+    print('A distribuição Nota 2 é assimétrica positiva')
+else:
+    print('A distribuição Nota 2 é assimétrica negativa')
+
+if -0.5 <= assimetria3 <= 0.5:
+    print('A distribuição Nota 3 é simétrica')
+elif assimetria3 > -0.5:
+    print('A distribuição Nota 3 é assimétrica positiva')
+else:
+    print('A distribuição Nota 3 é assimétrica negativa')
+
+if -0.5 <= assimetria4 <= 0.5:
+    print('A distribuição de Média é simétrica')
+elif assimetria4 > -0.5:
+    print('A distribuição de Média é assimétrica positiva')
+else:
+    print('A distribuição de Média é assimétrica negativa')
+
+if -0.5 <= assimetria5 <= 0.5:
+    print('A distribuição de Frequência é simétrica')
+elif assimetria5 > -0.5:
+    print('A distribuição de Frequência é assimétrica positiva')
+else:
+    print('A distribuição de Frequência é assimétrica negativa')
+
+#Curtoses
+curtose1 = df_alunos['nota1'].kurtosis()
+curtose2 = df_alunos['nota2'].kurtosis()
+curtose3 = df_alunos['nota3'].kurtosis()
+curtose4 = df_alunos['media'].kurtosis()
+curtose5 = df_alunos['frequencia'].kurtosis()
+
+#Condições de curtoses a seguir:
+
+if 2.5 <= curtose1 <= 3.5:
+    print('A distribuição Nota 1 é MESOCÚRTICA')
+elif curtose1 < 2.5:
+    print('A distribuição Nota 1 é PLATIOCÚRTICA')
+else:
+    print('A distribuição Nota 1 é LEPTOCÚRTICA')
+
+if 2.5 <= curtose2 <= 3.5:
+    print('A distribuição Nota 2 é MESOCÚRTICA')
+elif curtose2 < 2.5:
+    print('A distribuição Nota 2 é PLATIOCÚRTICA')
+else:
+    print('A distribuição Nota 2 é LEPTOCÚRTICA')
+
+if 2.5 <= curtose3 <= 3.5:
+    print('A distribuição Nota 3 é MESOCÚRTICA')
+elif curtose3 < 2.5:
+    print('A distribuição Nota 3 é PLATIOCÚRTICA')
+else:
+    print('A distribuição Nota 3 é LEPTOCÚRTICA')
+
+if 2.5 <= curtose4 <= 3.5:
+    print('A distribuição de Média é MESOCÚRTICA')
+elif curtose4 < 2.5:
+    print('A distribuição de Média é PLATIOCÚRTICA')
+else:
+    print('A distribuição de Média é LEPTOCÚRTICA')
+
+if 2.5 <= curtose5 <= 3.5:
+    print('A distribuição de Frequência é MESOCÚRTICA')
+elif curtose5 < 2.5:
+    print('A distribuição de Frequência é PLATIOCÚRTICA')
+else:
+    print('A distribuição de Frequência é LEPTOCÚRTICA')
